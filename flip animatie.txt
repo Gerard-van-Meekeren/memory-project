@@ -1,0 +1,44 @@
+Ik probeer nu de flip animatie toe te voegen, maar het lukt niet echt. Ik probeerde:
+	    BeginStoryboard sb = this.FindResource("begin") as BeginStoryboard;
+            sb.Storyboard.Begin();
+            BeginStoryboard sb2 = this.FindResource("twa") as BeginStoryboard;
+            sb2.Storyboard.Begin();
+
+toe te voegen aan de card clicker, maar dat werkte niet. Dit moet een storyboard starten als je op het kaartje klikt. Deze start dus:
+    <Window.Resources>
+        <BeginStoryboard x:Key="begin">
+            <Storyboard x:Name="Storyboard1">
+                <DoubleAnimation To="0" Duration="0:0:1"  Storyboard.TargetName="AnimatedScaleTransform" Storyboard.TargetProperty="(ScaleTransform.ScaleX)"/>
+            </Storyboard>
+        </BeginStoryboard>
+        <BeginStoryboard x:Key="twa">
+            <Storyboard x:Name="Storyboard2">
+                <DoubleAnimation From="0" To="1" BeginTime="0:0:1" Duration="0:0:1" Storyboard.TargetName="AnimatedScaleTransform2" Storyboard.TargetProperty="(ScaleTransform.ScaleX)"/>
+            </Storyboard>
+        </BeginStoryboard>
+    </Window.Resources>
+
+Deze animatie gaat dan weer over de buttons:
+
+        <Button x:Name="button1" Width="100" Click="button1_Click" RenderTransformOrigin="0.5,0.5" Height="100">
+            <Button.RenderTransform>
+                <ScaleTransform x:Name="AnimatedScaleTransform" ScaleX="-1" />
+            </Button.RenderTransform>
+            <Button.Template>
+                <ControlTemplate>
+                    <Image Source="gurbe1.jpg"/>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button Width="100" Click="button1_Click" RenderTransformOrigin="0.5,0.5" Height="100">
+            <Button.RenderTransform>
+                <ScaleTransform x:Name="AnimatedScaleTransform2" ScaleX="0" />
+            </Button.RenderTransform>
+            <Button.Template>
+                <ControlTemplate>
+                    <Image Source="gurbe2.jpg"/>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+Hoe voeg ik dit toe?
